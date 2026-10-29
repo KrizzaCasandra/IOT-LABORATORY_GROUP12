@@ -1,0 +1,24 @@
+{
+  "rules": {
+    "devices": {
+      "$deviceId": {
+        ".read": "auth != null && auth.uid === $deviceId",
+
+        "current": {
+          ".write": "auth != null && auth.uid === $deviceId",
+          ".validate": "newData.hasChildren(['deviceId','ts','tempC'])"
+        },
+
+        "history": {
+          "$ts": {
+            ".write": "auth != null && auth.uid === $deviceId"
+          }
+        },
+
+        "registry": {
+          ".write": "auth != null && auth.uid === $deviceId"
+        }
+      }
+    }
+  }
+}
